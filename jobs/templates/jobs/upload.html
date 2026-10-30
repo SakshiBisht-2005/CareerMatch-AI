@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume | CareerMatch AI</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 25px;
+            font-family: Arial, sans-serif;
+            color: #f5f7ff;
+            background:
+                radial-gradient(circle at 15% 10%, #28245b, transparent 35%),
+                #090e1c;
+        }
+
+        .panel {
+            width: min(650px, 100%);
+            padding: 35px;
+            background: #141c30;
+            border: 1px solid #303957;
+            border-radius: 22px;
+            box-shadow: 0 25px 80px #0005;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .brand span { color: #9b88ff; }
+
+        .eyebrow {
+            color: #a99fff;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 12px 0;
+        }
+
+        .description {
+            color: #aeb7d0;
+            line-height: 1.6;
+            margin-bottom: 27px;
+        }
+
+        label {
+            display: block;
+            margin: 17px 0 8px;
+            color: #dce2f5;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #39445f;
+            background: #0c1426;
+            color: white;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #9585ff;
+        }
+
+        input[type="file"] {
+            border-style: dashed;
+            padding: 17px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 11px;
+            padding: 16px;
+            margin-top: 25px;
+            color: white;
+            background: linear-gradient(100deg, #7967ed, #a16cf2);
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .error {
+            padding: 13px;
+            border-radius: 10px;
+            background: #3b1928;
+            border: 1px solid #8b3c53;
+            color: #ffb9c8;
+            margin-bottom: 20px;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: rgba(5, 8, 20, .96);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .loading-overlay.active { display: flex; }
+
+        .loader-orbit {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border: 3px solid #302b58;
+            border-top-color: #a28cff;
+            border-right-color: #64d9d0;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            position: relative;
+        }
+
+        .loader-orbit::after {
+            content: "✦";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #c7baff;
+            font-size: 40px;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            50% { transform: scale(1.3); opacity: .5; }
+        }
+
+        .loading-overlay h2 { margin-bottom: 12px; }
+
+        .loading-overlay p {
+            color: #aeb7d0;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 500px) {
+            .panel { padding: 23px; }
+            h1 { font-size: 27px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="panel">
+    <div class="brand">CareerMatch <span>AI</span></div>
+
+    <div class="eyebrow">Your next career move starts here</div>
+    <h1>Let AI discover your potential.</h1>
+
+    <p class="description">
+        Upload your resume and tell us what kind of opportunity
+        you're looking for. We'll extract your skills and help
+        you discover relevant jobs.
+    </p>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form id="uploadForm"
+          method="POST"
+          action="{% url 'jobs:upload' %}"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label for="resume">Upload your resume (PDF or DOCX)</label>
+        <input
+            type="file"
+            id="resume"
+            name="resume"
+            accept=".pdf,.docx"
+            required
+        >
+
+        <label for="job_role">Your current or preferred role</label>
+        <input
+            type="text"
+            id="job_role"
+            name="job_role"
+            placeholder="e.g. Python Developer"
+            required
+        >
+
+        <label for="location">Preferred job location</label>
+        <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="e.g. Gurugram, India"
+            required
+        >
+
+        <label for="experience">Experience</label>
+        <select id="experience" name="experience" required>
+            <option value="">Select experience</option>
+            <option value="Fresher">Fresher</option>
+            <option value="0-1 years">0–1 years</option>
+            <option value="1-3 years">1–3 years</option>
+            <option value="3-5 years">3–5 years</option>
+            <option value="5+ years">5+ years</option>
+        </select>
+
+        <label for="opportunity_type">Opportunity type</label>
+        <select id="opportunity_type" name="opportunity_type" required>
+            <option value="">Select opportunity type</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Internship">Internship</option>
+            <option value="Remote">Remote</option>
+            <option value="Contract">Contract</option>
+        </select>
+
+        <button class="submit-btn" type="submit">
+            Analyze My Resume →
+        </button>
+    </form>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div>
+        <div class="loader-orbit"></div>
+        <h2>Discovering your potential...</h2>
+        <p>
+            Our AI is reading your resume, identifying your skills
+            and building your career profile. This may take a little while.
+        </p>
+    </div>
+</div>
+
+<script>
+    const uploadForm = document.getElementById("uploadForm");
+
+    uploadForm.addEventListener("submit", function(event) {
+        const fileInput = document.getElementById("resume");
+
+        if (!fileInput.files.length) {
+            event.preventDefault();
+            alert("Please select your resume.");
+            return;
+        }
+
+        document.getElementById("loadingOverlay")
+            .classList.add("active");
+    });
+</script>
+
+</body>
+</html>

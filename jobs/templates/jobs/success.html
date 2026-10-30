@@ -1,0 +1,98 @@
+```django
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Uploaded | CareerMatch AI</title>
+    <link rel="stylesheet" href="{% static 'jobs/cs/style.css' %}">
+
+    <style>
+        .success-container {
+            width: min(650px, calc(100% - 36px));
+            margin: 100px auto;
+            padding: 45px 30px;
+            text-align: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .success-icon {
+            width: 72px;
+            height: 72px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: #19382c;
+            color: #a6f5ce;
+            font-size: 36px;
+        }
+
+        .success-container h1 {
+            margin-bottom: 15px;
+            font-size: clamp(28px, 5vw, 42px);
+        }
+
+        .success-container p {
+            margin-bottom: 28px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .success-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="{% url 'jobs:home' %}">
+            <span class="brand-icon">✳</span>
+            <span>CareerMatch<span class="brand-highlight"> AI</span></span>
+        </a>
+    </header>
+
+    <main class="success-container">
+        <div class="success-icon">✓</div>
+
+        <h1>
+            Resume <span class="gradient-text">uploaded!</span>
+        </h1>
+
+        <p>
+            Your resume and job preferences have been saved successfully.
+            You're one step closer to discovering relevant career opportunities.
+        </p>
+
+        <div class="success-actions">
+            <a class="button button-primary"
+               href="{% url 'jobs:upload' %}">
+                Upload another resume
+            </a>
+
+            <a class="button button-outline"
+               href="{% url 'jobs:home' %}">
+                Back to home
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a class="brand" href="{% url 'jobs:home' %}">
+            <span class="brand-icon">✳</span>
+            <span>CareerMatch<span class="brand-highlight"> AI</span></span>
+        </a>
+
+        <span class="copyright">
+            © 2026 CareerMatch AI · Student project
+        </span>
+    </footer>
+</body>
+</html>
+```

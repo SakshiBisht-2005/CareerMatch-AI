@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Find jobs that match your skills with CareerMatch AI.">
+    <title>CareerMatch AI — Your Next Opportunity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'jobs/cs/style.css' %}">
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="brand" href="{% url 'jobs:home' %}">
+            <span class="brand-icon">✳</span>
+            <span>CareerMatch<span class="brand-highlight"> AI</span></span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#opportunities">Opportunities</a>
+        </nav>
+
+        <a class="button button-small button-outline" href="#get-started">
+            Get started <span>↗</span>
+        </a>
+    </header>
+
+    <main>
+        <section class="hero section-shell">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    YOUR CAREER, WITH A SMARTER START
+                </div>
+
+                <h1>
+                    Your next big
+                    <span class="gradient-text">opportunity</span>
+                    starts here.
+                </h1>
+
+                <p class="hero-description">
+                    Upload your resume. Discover jobs that fit your skills,
+                    interests, and ambitions. Spend less time searching and
+                    more time moving forward.
+                </p>
+
+                <div class="hero-actions" id="get-started">
+                    <a class="button button-primary" href="{% url 'jobs:upload' %}">
+                        Find my match <span>↗</span>
+                    </a>
+                    <a class="button button-quiet" href="#features">
+                        Explore features <span>↓</span>
+                    </a>
+                </div>
+
+                <div class="social-proof">
+                    <div class="avatar-stack" aria-hidden="true">
+                        <span>R</span>
+                        <span>A</span>
+                        <span>S</span>
+                        <span>+</span>
+                    </div>
+                    <div>
+                        <strong>Built for your next step</strong>
+                        <p>Students · Freshers · Career switchers</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Illustration of a job matching dashboard">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="floating-tag tag-top">
+                    <span class="tag-icon">✦</span>
+                    Smart matching
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-top">
+                        <div>
+                            <span class="small-label">YOUR CAREER DASHBOARD</span>
+                            <h3>Match overview</h3>
+                        </div>
+                        <span class="live-pill"><span></span> Ready</span>
+                    </div>
+
+                    <div class="profile-mini">
+                        <div class="profile-avatar">JD</div>
+                        <div class="profile-info">
+                            <strong>Your next opportunity</strong>
+                            <span>Skills-based recommendations</span>
+                        </div>
+                        <span class="sparkle">✧</span>
+                    </div>
+
+                    <div class="match-panel">
+                        <div class="match-panel-heading">
+                            <span>Profile readiness</span>
+                            <span class="match-number">AI-powered</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>Skills</span>
+                            <span>Experience</span>
+                            <span>Preferences</span>
+                        </div>
+                    </div>
+
+                    <div class="job-preview-heading">
+                        <strong>Explore matching roles</strong>
+                        <span>Preview</span>
+                    </div>
+
+                    <div class="job-mini">
+                        <div class="company-icon company-purple">⌘</div>
+                        <div class="job-mini-info">
+                            <strong>Python Developer</strong>
+                            <span>Development · Entry level</span>
+                        </div>
+                        <span class="arrow-circle">↗</span>
+                    </div>
+
+                    <div class="job-mini">
+                        <div class="company-icon company-orange">◈</div>
+                        <div class="job-mini-info">
+                            <strong>Data Analyst</strong>
+                            <span>Analytics · Entry level</span>
+                        </div>
+                        <span class="arrow-circle">↗</span>
+                    </div>
+
+                    <div class="job-mini">
+                        <div class="company-icon company-blue">✳</div>
+                        <div class="job-mini-info">
+                            <strong>Web Developer</strong>
+                            <span>Technology · Internship</span>
+                        </div>
+                        <span class="arrow-circle">↗</span>
+                    </div>
+
+                    <p class="preview-note">
+                        <span>✦</span> Illustrative preview — live matches come later.
+                    </p>
+                </div>
+
+                <div class="floating-tag tag-bottom">
+                    <span class="check-icon">✓</span>
+                    Your next step, simplified
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-strip">
+            <p>MADE TO HELP YOU MOVE FORWARD</p>
+            <div class="trust-items">
+                <span>✳ Skill-first discovery</span>
+                <span>◉ Fresher-friendly</span>
+                <span>↗ Career-focused</span>
+                <span>⌘ One smarter search</span>
+            </div>
+        </section>
+
+        <section class="features section-shell" id="features">
+            <div class="section-heading">
+                <span class="eyebrow">WHY CAREERMATCH AI</span>
+                <h2>Less scrolling.<br><span class="gradient-text">More possibilities.</span></h2>
+                <p>A simpler way to explore opportunities that make sense for you.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon mint">⌕</div>
+                    <span class="feature-number">01 / DISCOVER</span>
+                    <h3>Relevant opportunities</h3>
+                    <p>Explore roles based on your skills, interests, preferred location, and career goals.</p>
+                    <a href="#how-it-works">Find your direction <span>↗</span></a>
+                </article>
+
+                <article class="feature-card feature-card-highlight">
+                    <div class="feature-icon violet">✧</div>
+                    <span class="feature-number">02 / UNDERSTAND</span>
+                    <h3>Know your fit</h3>
+                    <p>See which skills align with a role and where you could improve your profile.</p>
+                    <a href="#how-it-works">Understand your match <span>↗</span></a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon orange">↗</div>
+                    <span class="feature-number">03 / GROW</span>
+                    <h3>Move with confidence</h3>
+                    <p>Build a clearer path from the skills you have to the opportunities you want.</p>
+                    <a href="#how-it-works">Plan your next step <span>↗</span></a>
+                </article>
+            </div>
+        </section>
+
+        <section class="how-section" id="how-it-works">
+            <div class="section-shell how-layout">
+                <div class="how-intro">
+                    <span class="eyebrow">SIMPLE BY DESIGN</span>
+                    <h2>Three steps.<br><span class="gradient-text">A clearer direction.</span></h2>
+                    <p>Your job search doesn't need to feel like searching for a needle in a haystack.</p>
+                    <a class="button button-primary" href="#get-started">
+                        Start your journey <span>↗</span>
+                    </a>
+                </div>
+
+                <div class="steps-list">
+                    <article class="step">
+                        <div class="step-number">01</div>
+                        <div>
+                            <h3>Share your profile</h3>
+                            <p>Start with your resume and the kind of role you're looking for.</p>
+                        </div>
+                        <span class="step-symbol">↑</span>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">02</div>
+                        <div>
+                            <h3>Discover your matches</h3>
+                            <p>Compare your skills with relevant job requirements.</p>
+                        </div>
+                        <span class="step-symbol">✳</span>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">03</div>
+                        <div>
+                            <h3>Take the next step</h3>
+                            <p>Review opportunities and continue to the employer's application page.</p>
+                        </div>
+                        <span class="step-symbol">↗</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="opportunities section-shell" id="opportunities">
+            <div class="opportunities-copy">
+                <span class="eyebrow">YOUR FUTURE ISN'T ONE-SIZE-FITS-ALL</span>
+                <h2>Find the role.<br>Build the <span class="gradient-text">future.</span></h2>
+                <p>
+                    Whether you're searching for your first internship or your
+                    first full-time role, start with what makes you unique.
+                </p>
+                <a class="button button-primary" href="#get-started">
+                    Let's get started <span>↗</span>
+                </a>
+            </div>
+            <div class="opportunity-art" aria-hidden="true">
+                <div class="art-ring ring-one"></div>
+                <div class="art-ring ring-two"></div>
+                <div class="art-star">✳</div>
+                <div class="art-label label-one">Your skills</div>
+                <div class="art-label label-two">Your ambition</div>
+                <div class="art-label label-three">Your next role ↗</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a class="brand" href="{% url 'jobs:home' %}">
+            <span class="brand-icon">✳</span>
+            <span>CareerMatch<span class="brand-highlight"> AI</span></span>
+        </a>
+        <p>Made for people ready for their next chapter.</p>
+        <span class="copyright">© 2026 CareerMatch AI · Student project</span>
+    </footer>
+</body>
+</html>
